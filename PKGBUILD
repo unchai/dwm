@@ -14,14 +14,20 @@ depends=('libx11' 'libxinerama' 'libxft' 'freetype2' 'st' 'dmenu')
 install=dwm.install
 source=(dwm.desktop
         https://dl.suckless.org/dwm/dwm-$pkgver.tar.gz
+        https://dwm.suckless.org/patches/systray/dwm-systray-6.4.diff
+        https://dwm.suckless.org/patches/alt-tab/dwm-alttab-6.4.diff
         config.h)
 sha256sums=('bc36426772e1471d6dd8c8aed91f288e16949e3463a9933fee6390ee0ccd3f81'
             'fa9c0d69a584485076cfc18809fd705e5c2080dafb13d5e729a3646ca7703a6e'
+            'e5e205b9286b8b65821ee60fe8dc93bfd686c39cc6c07cdd82af52a824825d06'
+            'SKIP'
             'SKIP')
 
 prepare() {
   cd "$srcdir/$pkgname-$pkgver"
   cp "$srcdir/config.h" config.h
+  patch -p1 < $srcdir/dwm-systray-6.4.diff
+  patch -p1 < $srcdir/dwm-alttab-6.4.diff
 }
 
 build() {

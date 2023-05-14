@@ -1,0 +1,5 @@
+src/
+pkg/
+*.diff
+*.zst
+*.tar.gz
